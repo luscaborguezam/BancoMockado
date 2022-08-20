@@ -1,31 +1,30 @@
 from fastapi import FastAPI
-import uvicorn
+import uvicorn # Cria servidor llocal no computador
+from datetime import date
+
+data = str(date.today())
 
 app = FastAPI()
 
-
 info = {
-    'name': 'In Gnave',
-    'id': '12345',
-    'last_access': '07/08/2022'
+    'name' : 'In Gnave',
+    'id': '01',
+    'last_access': data
 }
 
 
-@app.get('/')
+@app.get('/') #decorator
 def home():
-    return 'Seja Bem Vindo Ao Meu Perfil'
+    return 'Seja bem Vindo ao Banco Mock ;)'
 
-
-@app.get('/about')
+@app.get('/about') #decorator
 def about():
-    return 'Eu sou um cara complexo. Prefiro Linux do que Windows. Se pá, o Mac.'
+    return 'Nós somos Banco Mock'
 
-
-@app.get('/idade')
+@app.get('/user') #decorator
 def get_users():
-    return 28
-
+    return info
 
 
 if __name__ == '__main__':
-    uvicorn.run(app=app, port=8080)
+    uvicorn.run(app = app, port=8080)
